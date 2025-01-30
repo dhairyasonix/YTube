@@ -1,8 +1,11 @@
 import React from 'react'
+import VideoCard from "./VideoCard"
 
 const VideoContainer = () => {
   return (
-    <div>VideoContainer</div>
+    <div>
+      <VideoCard />
+    </div>
   )
 }
 
