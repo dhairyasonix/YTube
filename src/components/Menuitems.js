@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Menuitems = () => {
   const toggleMenue = useSelector(store=>store.app.isMenuOpen)
   if (!toggleMenue) return null;
   return (
-    <div className="w-[200px] border m-2 pl-4">
+    <div className="w-[200px] border m-2 pl-4 sticky top-20">
       <div className="p-3 ">
         <ul>
-          <li>Home</li>
+          <li> <Link to={'/'}>Home</Link></li>
           <li>Wath later</li>
           <li>Liked videos</li>
         </ul>
@@ -19,6 +20,22 @@ const Menuitems = () => {
           <li>History</li>
           <li>Playlist</li>
           <li>Your videos</li>
+        </ul>
+      </div>
+      <div className="p-3 ">
+        <h4 className="text-lg font-bold">Subscriptions</h4>
+        <ul>
+          <li>Akshay</li>
+          <li>CodeWithHarry</li>
+          <li>Gamiming</li>
+        </ul>
+      </div>
+      <div className="p-3 ">
+        <h4 className="text-lg font-bold">Subscriptions</h4>
+        <ul>
+          <li>Akshay</li>
+          <li>CodeWithHarry</li>
+          <li>Gamiming</li>
         </ul>
       </div>
       <div className="p-3 ">

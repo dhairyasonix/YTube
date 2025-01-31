@@ -3,7 +3,7 @@ import Menuitems from './Menuitems'
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className=''>
       <Menuitems/>
     </div>
   )
