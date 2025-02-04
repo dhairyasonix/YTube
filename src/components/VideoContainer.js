@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import VideoCard from "./VideoCard"
 import { YOUTUBE_VIDEOS_API } from '../utils/constants';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { OpenMenu } from '../utils/appSlice';
+import { addVideo } from '../utils/videoSlice';
+
 const VideoContainer = () => {
-  const dispatch =useDispatch()
-  const [videos,setvideos] = useState([])
-useEffect(()=>{
-  GetVideos();
-  dispatch(OpenMenu())
-},[]);
+  const dispatch = useDispatch()
 
-const GetVideos =async()=>{
-const data = await fetch(YOUTUBE_VIDEOS_API);
-const json = await data.json();
+  const video = useSelector(store => store.video.videoList)
 
-setvideos(json?.items)
-}
+  useEffect(() => {
+    GetVideos();
+    dispatch(OpenMenu())
+  }, []);
+
+  const GetVideos = async () => {
+    const data = await fetch(YOUTUBE_VIDEOS_API);
+    const json = await data.json();
+    dispatch(addVideo(json?.items))
+  }
+
 
   return (
     <div className='flex flex-wrap'>
-      {videos.map((videos)=> (
-        <VideoCard key={videos.id}info={videos}/> 
-        ) )}
+      {video?.length>0 && (video.map((videos) => (
+        <VideoCard key={videos?.etag } info={videos} />
+      )))}
     </div>
   )
 }
