@@ -8,15 +8,19 @@ import {
 } from "../utils/constants";
 import { cacheResult } from "../utils/searchSlice";
 import { addVideo } from "../utils/videoSlice";
+import { Link } from "react-router-dom";
+
 
 const Head = () => {
     const [serchQuery, setserchQuery] = useState("");
     const [suggestion, setsuggestion] = useState([]);
     const [showsuggestion, setshowsuggestion] = useState(false);
+   
     const searchcache = useSelector((store) => store.search);
     const dispatch = useDispatch();
     const cacheKeys = Object.keys(searchcache);
     const lastKey = cacheKeys[cacheKeys.length - 1];
+
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -56,6 +60,8 @@ const Head = () => {
         const result = await responce.json();
 
         dispatch(addVideo(result?.items));
+        setserchQuery(s)
+       
     };
 
     const toggleMenueHandler = () => {
@@ -82,13 +88,13 @@ const Head = () => {
             </div>
             <div className=" flex-col col-span-9">
                 <div className=" ml-52">
-                    <input
+                   <input
                         className="my-1 p-2 h-10 border w-1/2 border-gray-400 rounded-l-full"
                         type="text"
-                        value={serchQuery}
+                        value={serchQuery} 
                         onChange={(e) => setserchQuery(e?.target?.value)}
                         onFocus={() => setshowsuggestion(true)}
-                        onBlur={() => setTimeout(() => setshowsuggestion(false), 200)}
+                        onBlur={() => setTimeout(() => setshowsuggestion(false), 300)}
                     />
                     <button
                         className=" px-4 py-2 h-10 border border-gray-400 bg-slate-100 rounded-r-full "
@@ -101,15 +107,16 @@ const Head = () => {
                     <div className="mt-1 absolute ml-52 bg-white w-1/3  shadow-lg rounded-lg border border-slate-200">
                         <ul>
                             {suggestion?.map((s) => (
-                                <li
-                                    key={s}
+                              <Link to={"/"} key={s}> <li
+                                    
                                     className="p-2  shadow-sm hover:bg-gray-100 cursor-default "
                                     onMouseDown={() => {
                                         handleSuggestion(s);
+                                        
                                     }}
                                 >
                                     {s}
-                                </li>
+                                </li> </Link>
                             ))}
                         </ul>
                     </div>

@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const VideoCard = ({ info }) => {
-  if (info === undefined) return null;
+  if (info === undefined && null) return null;
   const { snippet, statistics, id } = info;
+  
   // const { title, thumbnails } = snippet;
   const videoId = typeof info.id === "object" ? info.id.videoId || info.id.channelID : info.id;
 

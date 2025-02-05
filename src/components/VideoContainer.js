@@ -11,7 +11,12 @@ const VideoContainer = () => {
   const video = useSelector(store => store.video.videoList)
 
   useEffect(() => {
-    GetVideos();
+     
+    if (!video || video.length === 0) {
+      GetVideos();
+    }
+    
+
     dispatch(OpenMenu())
   }, []);
 
@@ -24,8 +29,8 @@ const VideoContainer = () => {
 
   return (
     <div className='flex flex-wrap'>
-      {video?.length>0 && (video.map((videos) => (
-        <VideoCard key={videos?.etag } info={videos} />
+      {video?.length > 0 && (video.map((videos) => (
+        <VideoCard key={videos?.etag} info={videos} />
       )))}
     </div>
   )
