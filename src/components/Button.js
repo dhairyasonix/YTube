@@ -6,10 +6,13 @@ import { YOUTUBE_SEARCH_VIDEO_API } from '../utils/constants';
 const Button = ({name}) => {
   const dispatch =useDispatch();
    const handleSuggestion = async (s) => {
-    const responce = await fetch(YOUTUBE_SEARCH_VIDEO_API + s);
+   try{ const responce = await fetch(YOUTUBE_SEARCH_VIDEO_API + s);
     const result = await responce.json();
 
     dispatch(addVideo(result?.items));}
+  catch(err){
+    console.error("Error fetching while click on button", err)
+  }}
   return (
     <div>
         <div>

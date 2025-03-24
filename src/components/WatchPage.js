@@ -16,22 +16,24 @@ const WatchPage = () => {
     }, [])
 
     const getComments = async () => {
-        const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
+       try { const data = await fetch(YOUTUBE_COMMENTS + searchParams.get("v"));
         const json = await data.json();
-        setcommentList(json?.items)
+        setcommentList(json?.items)}
+        catch(err){ 
+            console.error("Error fetching comments:",err)
+        }
         
     }
 
     return (
-        <div className='px-24'>
-            <div className=' pt-10 '>
-                <iframe className='rounded-xl' width="870" height="460" src={"https://www.youtube.com/embed/" + searchParams.get("v") + "?&autoplay=1"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+        <div className='lg:px-24 '>
+            <div className=' pt-10 w-full h-[25vh] lg:w-[125vh] lg:h-[75vh]'>
+                <iframe className='lg:rounded-xl w-full h-full'  src={"https://www.youtube.com/embed/" + searchParams.get("v") + "?&autoplay=1"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
             </div>
             <div>
-                {commentList.map(comment=><Comments key={comment.id} items={comment}/>)}
-                <Comments items={commentList[0]}/>
-                <Comments />
-                <Comments />
+                {commentList && commentList.map(comment=><Comments key={comment.id} items={comment}/>)}
+                
+                
             </div>
 
         </div>
