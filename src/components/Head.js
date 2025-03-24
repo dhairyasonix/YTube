@@ -8,16 +8,18 @@ import {
 } from "../utils/constants";
 import { cacheResult } from "../utils/searchSlice";
 import { addVideo } from "../utils/videoSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Head = () => {
     const [serchQuery, setserchQuery] = useState("");
     const [suggestion, setsuggestion] = useState([]);
     const [showsuggestion, setshowsuggestion] = useState(false);
+
    
     const searchcache = useSelector((store) => store.search);
     const dispatch = useDispatch();
+    const navigate=useNavigate()
     const cacheKeys = Object.keys(searchcache);
     const lastKey = cacheKeys[cacheKeys.length - 1];
 
@@ -60,7 +62,8 @@ const Head = () => {
         const result = await responce.json();
 
         dispatch(addVideo(result?.items));
-        setserchQuery(s)}
+        setserchQuery(s)
+    navigate("/")}
         catch(err){
             console.error("ERROR handling suggestion",err)
         }
@@ -101,7 +104,7 @@ const Head = () => {
                         onBlur={() => setTimeout(() => setshowsuggestion(false), 300)}
                     />
                     <button
-                        className=" px-4 lg:py-2 h-8 lg:h-10 border border-gray-400 bg-slate-100 rounded-r-full "
+                        className=" lg:px-4 px-2 lg:py-2 h-8 lg:h-10 border border-gray-400 bg-slate-100 rounded-r-full "
                         onClick={() => handleSuggestion(serchQuery)}
                     >
                         🔍
