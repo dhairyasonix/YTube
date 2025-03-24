@@ -10,7 +10,7 @@ const Menuitems = () => {
       <div className="p-3 ">
         <ul>
           <li> <Link to={'/'}>Home</Link></li>
-          <li>Wath later</li>
+          <li>Watch later</li>
           <li>Liked videos</li>
         </ul>
       </div>
@@ -27,7 +27,7 @@ const Menuitems = () => {
         <ul>
           <li>Akshay</li>
           <li>CodeWithHarry</li>
-          <li>Gamiming</li>
+          <li>Gaming</li>
         </ul>
       </div>
       <div className="p-3 ">
@@ -35,7 +35,7 @@ const Menuitems = () => {
         <ul>
           <li>Akshay</li>
           <li>CodeWithHarry</li>
-          <li>Gamiming</li>
+          <li>Gaming</li>
         </ul>
       </div>
       <div className="p-3 ">
@@ -43,7 +43,7 @@ const Menuitems = () => {
         <ul>
           <li>Akshay</li>
           <li>CodeWithHarry</li>
-          <li>Gamiming</li>
+          <li>Gaming</li>
         </ul>
       </div>
     </div>
