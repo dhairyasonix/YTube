@@ -90,13 +90,14 @@ const Head = () => {
                 </a>
             </div>
             <div className=" flex-col col-span-9">
-                <div className="  flex items-center justify-center">
-                   <input
+                
+                  <form className="  flex items-center justify-center" onSubmit={(e)=>{e.preventDefault(); setshowsuggestion(false)}}> <input
                         className="my-1 p-2 h-8 lg:h-10 border w-3/4 lg:w-1/2 border-gray-400 rounded-l-full"
                         type="text"
                         value={serchQuery} 
-                        onChange={(e) => setserchQuery(e?.target?.value)}
+                        onChange={(e) => {setserchQuery(e?.target?.value);setshowsuggestion(true)}}
                         onFocus={() => setshowsuggestion(true)}
+                        
                         onBlur={() => setTimeout(() => setshowsuggestion(false), 300)}
                     />
                     <button
@@ -105,7 +106,8 @@ const Head = () => {
                     >
                         🔍
                     </button>
-                </div>
+                    </form>
+                
                 {showsuggestion && (
                     <div className="mt-1 absolute ml-6 lg:ml-64 bg-white w-1/3  shadow-lg rounded-lg border border-slate-200">
                         <ul>
@@ -127,7 +129,7 @@ const Head = () => {
             </div>
             <div className="flex col-span-1 justify-center items-center ">
                 <img
-                    className="h-7"
+                    className="lg:h-7 lg:w-7 h-6 w-6"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtRs_rWILOMx5-v3aXwJu7LWUhnPceiKvvDg&s"
                     alt="profile"
                 />

@@ -27,7 +27,7 @@ const WatchPage = () => {
 
     return (
         <div className='lg:px-24 '>
-            <div className=' pt-10 w-full h-[35vh] lg:w-[125vh] lg:h-[75vh]'>
+            <div className=' pt-10 w-full h-[40vh] lg:w-[125vh] lg:h-[75vh]'>
                 <iframe className='lg:rounded-xl w-full h-full'  src={"https://www.youtube.com/embed/" + searchParams.get("v") + "?&autoplay=1"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
             </div>
             <div>
